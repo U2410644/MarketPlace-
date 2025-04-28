@@ -31,7 +31,8 @@ contract Marketplace {
         string productName,
         string buyerName,
         address buyer,
-        uint price
+        uint quantity,
+        uint totalPrice
     );
 
     modifier onlyAdmin() {
@@ -54,18 +55,24 @@ contract Marketplace {
         emit ProductCreated(productCount, _name, _imageName, _price, _stock, msg.sender);
     }
 
-    function purchaseProduct(uint _id, string memory _buyerName) public payable {
+    function purchaseProduct(uint _id, string memory _buyerName, uint _quantity) public payable {
         require(_id > 0 && _id <= productCount, "Invalid product ID");
 
         Product storage product = products[_id];
 
-        require(product.stock > 0, "Out of stock");
-        require(msg.value >= product.price, "Insufficient payment");
+        require(_quantity > 0 && _quantity <= product.stock, "Invalid quantity");
+        uint totalPrice = product.price * _quantity;
+        require(msg.value >= totalPrice, "Insufficient payment");
 
-        product.owner.transfer(msg.value);
-        product.stock--;
-        totalSales += msg.value;
+        product.owner.transfer(totalPrice);
+        product.stock -= _quantity;
+        totalSales += totalPrice;
 
-        emit ProductPurchased(_id, product.name, _buyerName, msg.sender, msg.value);
+        emit ProductPurchased(_id, product.name, _buyerName, msg.sender, _quantity, totalPrice);
     }
+    function removeProduct(uint _id) public onlyAdmin {
+    require(_id > 0 && _id <= productCount, "Invalid product ID");
+    Product storage product = products[_id];
+    product.stock = 0; // Hides product by making stock 0
+   }
 }

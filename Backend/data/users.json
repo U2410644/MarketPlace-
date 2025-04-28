@@ -15,5 +15,29 @@
     "name": "Roshan Shahi",
     "email": "roshan10shahi@gmail.com",
     "password": "Roshan@1324"
+  },
+  {
+    "id": 4,
+    "name": "Rame",
+    "email": "Rame@gmail.com",
+    "password": "Rame"
+  },
+  {
+    "id": 5,
+    "name": "Bishnu Shahi",
+    "email": "bishnu@gmail.com",
+    "password": "Bishnu1324"
+  },
+  {
+    "id": 6,
+    "name": "bikash",
+    "email": "Bikash@marketplace.com",
+    "password": "bbbbbb"
+  },
+  {
+    "id": 7,
+    "name": "Rubin",
+    "email": "Rubin@marketplace.com",
+    "password": "Rubin"
   }
 ]

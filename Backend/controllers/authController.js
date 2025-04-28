@@ -2,32 +2,58 @@
 
 const fs = require('fs');
 const path = require('path');
-
-// Path to the users.json file
 const usersFile = path.join(__dirname, '..', 'data', 'users.json');
 
-/**
- * POST /api/auth/login
- * Reads users.json, checks credentials, returns success or failure.
- */
 exports.login = (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' });
   }
 
-  // Read the JSON file
   const usersData = JSON.parse(fs.readFileSync(usersFile, 'utf-8'));
-
-  // Find the user
   const user = usersData.find(u => u.email === email && u.password === password);
   if (!user) {
     return res.status(401).json({ error: 'Invalid credentials.' });
   }
 
-  // In a real app, you'd use sessions or JWT. For now, just send success + user info
   return res.json({
     message: 'Login successful!',
-    user: { id: user.id, email: user.email }
+    user: { id: user.id, name: user.name, email: user.email }
+  });
+};
+
+exports.register = (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: 'Name, email, and password are required.' });
+  }
+
+  let users = [];
+  if (fs.existsSync(usersFile)) {
+    try {
+      users = JSON.parse(fs.readFileSync(usersFile, 'utf-8'));
+    } catch (err) {
+      return res.status(500).json({ error: 'Failed to parse users file.' });
+    }
+  }
+
+  const existingUser = users.find(u => u.email === email);
+  if (existingUser) {
+    return res.status(400).json({ error: 'User already exists.' });
+  }
+
+  const newUser = {
+    id: users.length + 1,
+    name,
+    email,
+    password
+  };
+
+  users.push(newUser);
+  fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
+
+  return res.status(201).json({
+    message: 'Account created successfully',
+    user: { id: newUser.id, name: newUser.name, email: newUser.email }
   });
 };
