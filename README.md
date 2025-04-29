@@ -2,7 +2,7 @@
 
 A full-stack Ethereum-based Decentralized Application (DApp) that allows customers to browse and purchase products using MetaMask, while enabling admin users to manage products, stock, and images with a real-time blockchain backend.
 
-Built With:
+Built With:   
 React.js – Frontend Framework
 Ethereum / Solidity – Smart Contracts
 Ganache / Web3.js – Blockchain Testing
