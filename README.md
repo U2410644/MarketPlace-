@@ -4,14 +4,37 @@ A full-stack Ethereum-based Decentralized Application (DApp) that allows custome
 
 ## Build With
 
-- Fetch weather data for any city.
 - React.js – Frontend Framework
 - Ethereum / Solidity – Smart Contracts
+- Ganache / Web3.js – Blockchain Testing
+- Truffle – Contract Deployment
+- MetaMask – Wallet Integration
+- JSON Server (mocked backend) – User Auth (register/login)
+- Static Image Support – Image selection from public folder
+- Cart System – Add/Remove items with quantity control
+- Admin Mode – Product creation, removal, and sales dashboard
 
-- Implemented using Node.js, Express, and TypeScript.
-- API documentation using Swagger (OpenAPI Specification).
-- Test API endpoints with Postman.
+## User Roles and Feature
 
+1. Admin
+- Add new products (with name, price, stock, image)
+- Remove listed products
+- Shows key metrics like total sales (in ETH), sold-out items, and in-stock products, providing a quick overview of     marketplace performance.
+
+2. Customer
+- Register/login
+- Browse products with images and details
+- Add products to basket with quantity control
+- Confirm purchase via MetaMask
+- View purchase history
+- Product Image Management
+- Images are stored in /public/image/ folder
+- Admin selects images via dropdown during product creation
+- Fallback image is used if product image is missing
+
+   
+
+   
 ## Installation
 
 To get started with this project, clone the repository and install the dependencies.
