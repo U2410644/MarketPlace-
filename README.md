@@ -5,6 +5,7 @@ A full-stack Ethereum-based Decentralized Application (DApp) that allows custome
 
 Built With:   
 React.js – Frontend Framework
+
 Ethereum / Solidity – Smart Contracts
 
 Ganache / Web3.js – Blockchain Testing
