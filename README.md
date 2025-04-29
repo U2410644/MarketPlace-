@@ -33,63 +33,57 @@ A full-stack Ethereum-based Decentralized Application (DApp) that allows custome
 - Fallback image is used if product image is missing
 
    
+## Basket (Cart)
+- Customers can add items to basket
+- Quantity can be increased or decreased
+- Basket items persist via localStorage
+- Confirmed purchases update product stock on-chain
+
+## Smart Contract (Solidity)
+function purchaseProduct(uint _id, string memory _buyerName, uint _quantity) public payable {
+    require(_quantity > 0 && _quantity <= product.stock, "Invalid quantity");
+    require(msg.value >= product.price * _quantity, "Insufficient payment");
+    product.stock -= _quantity;
+    totalSales += msg.value;
+    emit ProductPurchased(_id, msg.sender, _buyerName, _quantity, msg.value);
+}
+
+
+## Getting Started
+- Prerequisites
+- Node.js
+- MetaMask
+- Truffle
+- Ganache
+- Optional: JSON Server for mocked backend
 
    
 ## Installation
 
-To get started with this project, clone the repository and install the dependencies.
-
-```bash
-  git clone https://github.com/your-username/weather-api.git
-  cd weather-api
-```
-
-Now install the dependencies.
-
-```bash
-    npm install
-```
-
-## Run in Development
-
-To run the Weather API in a development environment, follow these steps:
-
-Start the TypeScript Compiler in Watch Mode:
-
-- Open a terminal in the project root directory.
-- Run the TypeScript compiler in watch mode, which will compile the TypeScript files to JavaScript in real-time as you make changes.
-
-```bash
-npm run build:watch
-```
-
-Start the Development Server:
-
-- Open another terminal while the first one is still running.
-- Run the development server, which will use the compiled JavaScript files.
-
-```bash
-npm run dev
-```
-
-This setup allows you to actively develop and test your application with live updates as you save your TypeScript files.
 
 ## Run Locally
+1. Start Ganache locally
+2. Compile & migrate contracts
+- truffle compile
+- truffle migrate --reset
+3. Start React frontend
+- cd client
+- npm install
+- npm start
+4. Start JSON server (for /Backend API)
+- cd Backend
+- node server.js or npm start
+- Admin Credentials
+Email: admin@marketplace.com
+Password: admin123
+Use these to log in as admin and manage the product listings.
 
-For local running of the Weather API, especially in a production-like environment, follow these steps:
-
-Compile the TypeScript files to JavaScript.
-
-```bash
-  npm run build
-
-```
-
-Start the server
-
-```bash
-  npm run start
-```
+## Future Improvements
+- Backend DB integration (MongoDB / PostgreSQL)
+- Mobile responsive UI
+- ML-based product recommendations
+- Notification system for order confirmation
+- Acknowledgments
 
 
 
