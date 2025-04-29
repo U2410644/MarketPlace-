@@ -11,18 +11,27 @@ Ethereum / Solidity – Smart Contracts
 Ganache / Web3.js – Blockchain Testing
 
 Truffle – Contract Deployment
+
 MetaMask – Wallet Integration  
+
 JSON Server (mocked backend) – User Auth (register/login)
+
 Static Image Support – Image selection from public folder
+
 Cart System – Add/Remove items with quantity control
+
 Admin Mode – Product creation, removal, and sales dashboard
+
 Features
 User Roles:
+
 Admin
+
 Add new products (with name, price, stock, image)
 Remove listed products
 
 Customer
+
 Register/login
 Browse products with images and details
 Add products to basket with quantity control
@@ -34,12 +43,14 @@ Admin selects images via dropdown during product creation
 Fallback image is used if product image is missing
 
 Basket (Cart)
+
 Customers can add items to basket
 Quantity can be increased or decreased
 Basket items persist via localStorage
 Confirmed purchases update product stock on-chain
 
 Smart Contract (Solidity)
+
 function purchaseProduct(uint _id, string memory _buyerName, uint _quantity) public payable {
     require(_quantity > 0 && _quantity <= product.stock, "Invalid quantity");
     require(msg.value >= product.price * _quantity, "Insufficient payment");
