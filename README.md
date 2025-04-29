@@ -33,20 +33,31 @@ Remove listed products
 Customer
 
 Register/login
+
 Browse products with images and details
+
 Add products to basket with quantity control
+
 Confirm purchase via MetaMask
+
 View purchase history
+
 Product Image Management
+
 Images are stored in /public/image/ folder
+
 Admin selects images via dropdown during product creation
+
 Fallback image is used if product image is missing
 
 Basket (Cart)
 
 Customers can add items to basket
+
 Quantity can be increased or decreased
+
 Basket items persist via localStorage
+
 Confirmed purchases update product stock on-chain
 
 Smart Contract (Solidity)
