@@ -1,112 +1,66 @@
+# Weather API
 
-# Decentralized Marketplace DApp (with Basket & Admin Management)
+This Weather API is built using Node.js and Express, and it's designed to fetch weather data for a specified city. It's a simple demonstration of creating and deploying RESTful APIs with a service layer architecture, using TypeScript for improved code reliability.
 
-A full-stack Ethereum-based Decentralized Application (DApp) that allows customers to browse and purchase products using MetaMask, while enabling admin users to manage products, stock, and images with a real-time blockchain backend.
+## Features
 
-Built With:   
-React.js – Frontend Framework
+- Fetch weather data for any city.
+- Implemented using Node.js, Express, and TypeScript.
+- API documentation using Swagger (OpenAPI Specification).
+- Test API endpoints with Postman.
 
-Ethereum / Solidity – Smart Contracts
+## Installation
 
-Ganache / Web3.js – Blockchain Testing
+To get started with this project, clone the repository and install the dependencies.
 
-Truffle – Contract Deployment
+```bash
+  git clone https://github.com/your-username/weather-api.git
+  cd weather-api
+```
 
-MetaMask – Wallet Integration  
+Now install the dependencies.
 
-JSON Server (mocked backend) – User Auth (register/login)
+```bash
+    npm install
+```
 
-Static Image Support – Image selection from public folder
+## Run in Development
 
-Cart System – Add/Remove items with quantity control
+To run the Weather API in a development environment, follow these steps:
 
-Admin Mode – Product creation, removal, and sales dashboard
+Start the TypeScript Compiler in Watch Mode:
 
-Features
-User Roles:
+- Open a terminal in the project root directory.
+- Run the TypeScript compiler in watch mode, which will compile the TypeScript files to JavaScript in real-time as you make changes.
 
-Admin
+```bash
+npm run build:watch
+```
 
-Add new products (with name, price, stock, image)
-Remove listed products
+Start the Development Server:
 
-Customer
+- Open another terminal while the first one is still running.
+- Run the development server, which will use the compiled JavaScript files.
 
-Register/login
+```bash
+npm run dev
+```
 
-Browse products with images and details
+This setup allows you to actively develop and test your application with live updates as you save your TypeScript files.
 
-Add products to basket with quantity control
+## Run Locally
 
-Confirm purchase via MetaMask
+For local running of the Weather API, especially in a production-like environment, follow these steps:
 
-View purchase history
+Compile the TypeScript files to JavaScript.
 
-Product Image Management
+```bash
+  npm run build
 
-Images are stored in /public/image/ folder
+```
 
-Admin selects images via dropdown during product creation
+Start the server
 
-Fallback image is used if product image is missing
-
-Basket (Cart)
-
-Customers can add items to basket
-
-Quantity can be increased or decreased
-
-Basket items persist via localStorage
-
-Confirmed purchases update product stock on-chain
-
-Smart Contract (Solidity)
-
-function purchaseProduct(uint _id, string memory _buyerName, uint _quantity) public payable {
-    require(_quantity > 0 && _quantity <= product.stock, "Invalid quantity");
-    require(msg.value >= product.price * _quantity, "Insufficient payment");
-
-    product.stock -= _quantity;
-    totalSales += msg.value;
-
-    emit ProductPurchased(_id, msg.sender, _buyerName, _quantity, msg.value);
-}
-
-
-Getting Started
-
-Prerequisites
-Node.js
-MetaMask
-Truffle
-Ganache
-Optional: JSON Server for mocked backend
-
-To Run Locally:
-# 1. Start Ganache locally
-
-# 2. Compile & migrate contracts
-truffle compile
-truffle migrate --reset
-
-# 3. Start React frontend
-cd client
-npm install
-npm start
-
-# 4. (Optional) Start JSON server (for /Backend API)
-cd Backend
-node server.js
-Admin Credentials
-
-Email: admin@marketplace.com
-Password: admin123
-Use these to log in as admin and manage the product listings.
-
-Future Improvements
-
-Backend DB integration (MongoDB / PostgreSQL)
-Mobile responsive UI
-ML-based product recommendations
-Notification system for order confirmation
-Acknowledgments
+```bash
+  npm run start
+```
